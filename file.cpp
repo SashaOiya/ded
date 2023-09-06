@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+
 #include "print_data.cpp"
 
 int main()
@@ -8,14 +10,21 @@ int main()
 
     const int rows = 4;
     const int line = 100;
-    char buffer[rows][line] = {};
-    //fputs ( "meow", f );
+    char *text2[rows] = {};
 
     for ( int p = 0; p < rows; ++p ) {
-        fgets ( &buffer[p][0], sizeof ( buffer ), f ) ;
+        char buffer[line] = {};
+        fgets ( buffer, sizeof ( buffer ), f ) ;
+        text2[p] = (char *)calloc ( rows, strlen ( buffer ) );
+        strcpy ( text2[p], buffer );
     }
 
-    PrintDataLine ( &buffer[0][0], rows, line  ) ;
+    PrintDataPtrArray ( text2, rows, line );
+
+    for ( int i = 0; i < rows; ++i ) {
+        free ( text2[i] ) ;
+        text2[i] = nullptr;
+    }
 
     return 0;
 }

@@ -8,22 +8,22 @@ int main()
 {
     FILE *f = fopen ( "text.txt", "r" );
 
-    const int rows = 4;
     const int line = 100;
-    char *text2[rows] = {};
+    const int nlines = 4;
+    char * *text4 = (char **)calloc ( nlines, sizeof ( char * ) );
 
-    for ( int p = 0; p < rows; ++p ) {
-        char buffer[line] = {};
-        fgets ( buffer, sizeof ( buffer ), f ) ;
-        text2[p] = (char *)calloc ( rows, strlen ( buffer ) );
-        strcpy ( text2[p], buffer );
+    for ( int p = 0; p < nlines; ++p ) {
+        char buffer[100] = {};
+        fgets ( buffer, sizeof ( buffer ), f );
+        text4[p] = (char *)calloc ( nlines, strlen ( buffer ) + 1 );
+        strcpy ( text4[p], buffer );
     }
 
-    PrintDataPtrArray ( text2, rows, line );
+    PrintDataPtrArray ( text4, nlines, line );
 
-    for ( int i = 0; i < rows; ++i ) {
-        free ( text2[i] ) ;
-        text2[i] = nullptr;
+    for ( int i = 0; i < nlines; ++i ) {
+        free ( text4[i] ) ;
+        text4[i] = nullptr;
     }
 
     return 0;

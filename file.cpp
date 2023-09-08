@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 
+#include "my_strdup.cpp"
 #include "print_data.cpp"
 
 int main()
@@ -14,9 +15,7 @@ int main()
 
     for ( int p = 0; p < nlines; ++p ) {
         char buffer[100] = {};
-        fgets ( buffer, sizeof ( buffer ), f );
-        text4[p] = (char *)calloc ( nlines, strlen ( buffer ) + 1 );
-        strcpy ( text4[p], buffer );
+        text4[p] = strdup ( fgets ( buffer, sizeof ( buffer ), f ) );
     }
 
     PrintDataPtrArray ( text4, nlines, line );

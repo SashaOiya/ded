@@ -25,5 +25,7 @@ int main()
         text4[i] = nullptr;
     }
 
+    fclose ( f );
+
     return 0;
 }

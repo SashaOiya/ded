@@ -1,1 +1,0 @@
-g++ file.cpp my_strdup.cpp print_data.cpp getfilesize.cpp compare.cpp  my_strdup.h print_data.h getfilesize.h compare.h

@@ -12,7 +12,7 @@
 
 struct Line
 {
-    char** ptr_array;
+    const char* text5;
 };
 
 struct Text
@@ -27,7 +27,6 @@ int Split ( char *buffer, int File_Size );
 int main()
 {
     Text Text_Elements;
-    Line  Ptr_Elements;
     FILE *f = fopen ( "text.txt", "r" );    // "r" or "rb"
 
     if ( f == nullptr )
@@ -55,25 +54,25 @@ int main()
     // if (...) free() return
     Text_Elements.buffer[File_Size] = '\n';
 
-    Text_Elements.n_lines = Split ( Text_Elements.buffer, File_Size );
+    nlines = Split ( Text_Elements.buffer, File_Size );
 
-    char *Ptr_Array[Text_Elements.n_lines];
+    char *text5[nlines];
     // if (...)  free(buffer)
 
-    Ptr_Array[0] = Text_Elements.buffer;
+    text5[0] = Text_Elements.buffer;
 
-    for ( int i = 1, j = 1; i < File_Size  && j < Text_Elements.n_lines; ++i ) {
+    for ( int i = 1, j = 1; i < File_Size  && j < nlines; ++i ) {
         if ( Text_Elements.buffer[i] == '\0' ) {
-            Ptr_Array[j++] = Text_Elements.buffer + i + 1;
+            text5[j++] = Text_Elements.buffer + i + 1;
         }
     }
 
-    qsort ( Ptr_Array, Text_Elements.n_lines, sizeof ( char * ), compare );
+    qsort ( text5, nlines, sizeof ( char * ), compare );
 
-    PrintDataPtrArray ( Ptr_Array, Text_Elements.n_lines );
+    PrintDataPtrArray ( text5, nlines );
 
     free ( Text_Elements.buffer );
-    *Ptr_Array = nullptr;    // wtf text5=nullptr don't work
+    *text5 = nullptr;    // wtf text5=nullptr don't work
 
     fclose ( f );
     return 0;

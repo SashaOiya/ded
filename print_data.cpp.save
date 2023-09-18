@@ -1,5 +1,8 @@
 #include <stdio.h>
-#include "print_data.h"
+
+void PrintDataTriagle ( const char *str, size_t rows, size_t cols );
+void PrintDataLine ( const char *str, size_t rows, size_t cols );
+void PrintDataPtrArray ( const char *str, size_t rows, size_t cols );
 
 void PrintDataTriagle ( char *str, size_t rows, size_t cols )
 {

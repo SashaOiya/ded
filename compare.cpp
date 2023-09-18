@@ -1,6 +1,5 @@
 #include <string.h>
-
-int compare ( const void * str_1, const void * str_2 );
+#include <ctype.h>
 
 /*
     enum !!!!
@@ -13,17 +12,13 @@ struct Return_Value_t {
 // < > 0
 int compare ( const void * str_1, const void * str_2 )
 {
-    // return
-    int value = strcmp ( *(const char **)str_1, *(const char **)str_2 );
-
-    if ( value < 0 ) {
-
-        return -1;
+    /*for ( ;isspace ( **(const char **)str_1 )
+        && isspace ( **(const char **)str_2 ); ++(*(const char **)str_1),
+                                               ++(*(const char **)str_2) ) {
+        ;
     }
-    else if ( value > 0 ) {
+    --(*(const char **)str_1);
+    --(*(const char **)str_2);   */
 
-        return 1;
-    }
-
-    return 0;
+    return strcmp ( *(const char **)str_1, *(const char **)str_2 );
 }

@@ -2,15 +2,20 @@
 #include <stdlib.h>
 #include <string.h>
 
+char *my_strdup ( char *str );
+
 char *my_strdup ( char *str )
 {
     char *s = ( char * )calloc( 1, strlen ( str ) );
-    if ( s == nullptr ) {
+    // if ...
 
-        return 0; //     struct
+    // EOF????!!!!!
+    if ( strlen ( str ) == EOF ) {
+        return nullptr;
     }
-
-    strcpy ( s, str );
+    else {
+        strcpy ( s, str );
+    }
 
     return s;
 }

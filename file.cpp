@@ -8,9 +8,9 @@
 #include "getfilesize.h"
 #include "bublesort.h"
 
-struct Line
+struct Line      // name
 {
-    char** ptr_array = nullptr;
+    char ** ptr_array = nullptr;
 };
 
 struct Text
@@ -66,7 +66,9 @@ int main()
 
     //qsort ( ptr_array, Text_Elements.n_lines, sizeof ( char * ), compare );
 
-    bouble_sort ( ptr_array, Text_Elements.n_lines, compare );
+    //printf ("%d\n", Text_Elements.n_lines );
+
+    bubble_sort ( ptr_array, Text_Elements.n_lines );
 
     PrintDataPtrArray ( ptr_array, Text_Elements.n_lines );
 

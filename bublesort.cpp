@@ -3,28 +3,26 @@
 
 void Swap ( char **s, const int j );
 
-int bouble_sort ( char **s, size_t size, int (*func) ( const void *, const void * ) )  //s
+// compare
+// void* void* aize_t
+int bubble_sort ( char *s[], size_t size )
 {
-    //char s[] = { 1, 5, 4, 2, 6, 3 };
-    //int (*func) ( const char, const char ) = compare;
-
-    //const int size = strlen ( s );
-    printf ("%s\n", (s + 1 * sizeof (char*) ) );
-
     for ( int n = size; n > 0; --n ) {
-        for ( int j = 0; j <= size; ++j ) {
-            if ( func ( *(s + j * sizeof ( char *) ), *(s + ( j + 1 ) * sizeof ( char *)  ) ) ) {
+        for ( int j = 0; j < size -1 ; ++j ) {
+            if ( strcmp ( s[j], s[j+1] ) > 0 ) {
                 Swap ( s, j );
             }
         }
     }
+    //PrintDataPtrArray ( s, size );
 
     return 0;
 }
 
+// p p size
 void Swap ( char **s, const int j )
 {
-    char *value = *(s + j * sizeof ( char *) );
-    *(s + j * sizeof ( char *) ) = *(s + ( j + 1 ) * sizeof ( char *) );
-    *(s + ( j + 1 ) * sizeof ( char *) ) = value;
+    char *value = s[j];
+    s[j] = s[j+1];
+    s[j+1] = value;
 }

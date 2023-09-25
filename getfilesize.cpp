@@ -1,22 +1,12 @@
-#include <stdio.h>
-
-/*
-
-fread(...)
-GetFileSize
-fread(...)
-
-*/
+#include "getfilesize.h"
 
 int GetFileSize ( FILE * f )
 {
-    FILE *start_position = f;
+    int prev = ftell ( f );
 
     fseek ( f, 0, SEEK_END );
     size_t sizet = ftell ( f );
-    fseek ( f, 0, SEEK_SET );
-
-    f = start_position;
+    fseek ( f, prev, SEEK_SET );
 
     return sizet;
 }

@@ -1,13 +1,11 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "my_strdup.h"
 
 char *my_strdup ( char *str )
 {
     char *s = ( char * )calloc( 1, strlen ( str ) );
     if ( s == nullptr ) {
 
-        return 0; //     struct
+        return 0;
     }
 
     strcpy ( s, str );

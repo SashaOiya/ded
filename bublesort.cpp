@@ -1,24 +1,30 @@
-#include <stdio.h>
-#include <string.h>
+#include "bublesort.h"
+#include "print_data.h"
 
-#include "print_data.cpp"
+void Swap ( char **s, const int j );
 
-int main()
+int bouble_sort ( char **s, size_t size, int (*func) ( const void *, const void * ) )  //s
 {
-    char s[] = { 1, 5, 4, 2, 6, 3 };
+    //char s[] = { 1, 5, 4, 2, 6, 3 };
+    //int (*func) ( const char, const char ) = compare;
 
-    const int size = strlen ( s );
+    //const int size = strlen ( s );
+    printf ("%s\n", (s + 1 * sizeof (char*) ) );
 
     for ( int n = size; n > 0; --n ) {
         for ( int j = 0; j <= size; ++j ) {
-            if ( s[j] > s[j + 1] ) {
-                char value = s[j];
-                s[j] = s[j+1];
-                s[j+1] = value;
+            if ( func ( *(s + j * sizeof ( char *) ), *(s + ( j + 1 ) * sizeof ( char *)  ) ) ) {
+                Swap ( s, j );
             }
         }
     }
-    PrintDataLine ( s, 1, size );
 
     return 0;
+}
+
+void Swap ( char **s, const int j )
+{
+    char *value = *(s + j * sizeof ( char *) );
+    *(s + j * sizeof ( char *) ) = *(s + ( j + 1 ) * sizeof ( char *) );
+    *(s + ( j + 1 ) * sizeof ( char *) ) = value;
 }

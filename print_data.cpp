@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "print_data.h"
 
 void PrintDataTriagle ( char *str, size_t rows, size_t cols )
@@ -39,8 +38,6 @@ void PrintDataLine ( const char *str, size_t rows, size_t cols )
     }
 }
 
-// difference char** str?
-// char *str[3]?
 void PrintDataPtrArray ( char *str[], size_t rows )
 {
     for ( size_t i = 0; i < rows; ++i ) {

@@ -9,6 +9,20 @@
 #include "bublesort.h"
 #include "ctor.h"
 
+/*struct Line_t
+{
+    char* start = nullptr;
+    size_t len;
+};
+
+struct Text_t
+{
+    size_t n_lines = 0;
+    //char ** ptr_array = nullptr;
+    Line_t* lines;
+    char* buffer = nullptr;
+}; */
+
 struct Line_t
 {
     char* buffer = nullptr;
@@ -37,15 +51,15 @@ int main()
 
     Ptr_Elements.buffer = TextCtor ( &file_size, f );
 
-    Text_Elements.n_lines = Split ( Ptr_Elements.buffer, file_size );
+    Text_Elements.ptr_array= Split ( Ptr_Elements.buffer, file_size, &Text_Elements.n_lines );
 
-    char *ptr_array[Text_Elements.n_lines];
+    //char *ptr_array[Text_Elements.n_lines]; // calloc
 
-    Split2 ( Text_Elements.n_lines, ptr_array, Ptr_Elements.buffer, file_size );
+    //Split2 ( Text_Elements.n_lines, ptr_array, Ptr_Elements.buffer, file_size );
 
-    bubble_sort ( ptr_array, Text_Elements.n_lines );
+    bubble_sort ( Text_Elements.ptr_array, Text_Elements.n_lines, compare );
 
-    PrintDataPtrArray ( ptr_array, Text_Elements.n_lines );
+    PrintDataPtrArray ( Text_Elements.ptr_array, Text_Elements.n_lines );
 
     free ( Ptr_Elements.buffer );
     //*Ptr_Array = nullptr;    // wtf text5=nullptr don't work

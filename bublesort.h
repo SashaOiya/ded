@@ -4,8 +4,10 @@
 #include <stdio.h>
 #include <string.h>
 
-int compare ( const void * str_1, const void * str_2 );
-int bubble_sort ( char *s[], size_t size );
+void Swap ( void **str_1, void **str_2 );
+int bubble_sort ( char *s[], const size_t size, int (*compare) ( const void *, const void *) );
+
+// qsort()
 
 #endif
 

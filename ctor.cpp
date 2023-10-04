@@ -1,30 +1,33 @@
 #include "ctor.h"
 
-int Split ( char *buffer, const int File_Size )
+
+// CALLOC
+char ** Split ( char *buffer, const int file_size, size_t *n_lines_ptr )
 {
-    buffer[File_Size] = '\n';
+    buffer[file_size] = '\n';
 
     int n_lines = 0;
 
-    for ( int i = 0; i <= File_Size; ++i ) {
+    for ( int i = 0; i <= file_size; ++i ) {
         if ( *( buffer + i ) == '\n' ) {
             ++n_lines;
             *( buffer + i ) = '\0';
         }
     }
 
-    return n_lines;
-}
+    *n_lines_ptr = n_lines;
 
-int Split2 ( const int n_lines, char **Ptr_Array, char *buffer, const int File_Size )
-{
-    Ptr_Array[0] = buffer;
+    char **ptr_array = ( char **)calloc( n_lines, sizeof ( char * ) );
 
-    for ( int i = 1, j = 1; i < File_Size && j < n_lines; ++i ) {
+    ptr_array[0] = buffer;
+
+    for ( int i = 1, j = 1; i < file_size && j < n_lines; ++i ) {
         if ( buffer[i] == '\0' ) {
-            Ptr_Array[j++] = buffer + i + 1;
+            ptr_array[j++] = buffer + i + 1;
         }
     }
+
+    return ptr_array;
 }
 
 char *TextCtor ( int *file_size, FILE *f )
